@@ -12,9 +12,9 @@ pip install eqparse
 
 to Load a SIM file, use LoadSim and do not use a file extension:
 
-'''
+```python
 mysim = eq.LoadSim('C:/myinputfile')
-'''
+```
 
 
 ### Installing
@@ -22,14 +22,16 @@ The 'loadSim' object allows access to 'sim' and 'hsr' modules
 
 Most reports can be accessed like this, returning Pandas Dataframes:
 
-
->mysim.sim.bepu()
->mysim.sim.ssa()
-
+```python
+mysim.sim.bepu()
+mysim.sim.ssa()
+```
 
 HSR files can be accessed as DataFrames as follows:
 
->df = mysim.hsr.df
+```python
+df = mysim.hsr.df
+```
 
 ### Convenience functions
 
@@ -37,25 +39,35 @@ In general, the primary functionality eqparse has been designed to be as unopini
 
 A few example methods (these are generally located at the top-level LoadSim object):
 
->mysim.annual_summaries() # < returns a dictionary of 'beps', 'bepu', and 'cost' end-use summary dataframes
->
->mysim.annual_cost_enduses() # < calculates virtual utility rates and provides cost-level end-use summary similar to standard BEPS / BEPU outputs.
->
->mysim.leed_enduses() # < pivots PS-F reports into a more LEED-friendly format for data entry.
->
->mysim.sim_print() # < accepts a list of report names, outputs a working SIM file with only the reports passed (useful for compliance-based report export)
+```python
+mysim.annual_summaries() # < returns a dictionary of 'beps', 'bepu', and 'cost' end-use summary dataframes
+
+mysim.annual_cost_enduses() # < calculates virtual utility rates and provides cost-level end-use summary similar to standard BEPS / BEPU outputs.
+
+mysim.leed_enduses() # < pivots PS-F reports into a more LEED-friendly format for data entry.
+
+mysim.sim_print() # < accepts a list of report names, outputs a working SIM file with only the reports passed (useful for compliance-based report export)
+```
 
 eqparse also has some plotting functions, using Plotly:
->hsr_df = mysim.hsr.df
->mysim.hsr.plot.line(df)
->mysim.hsr.plot.heatmap(df, 0) # < 0 refers to column number
 
+```python
+hsr_df = mysim.hsr.df
+mysim.hsr.plot.line(df)
+mysim.hsr.plot.heatmap(df, 0) # < 0 refers to column number
+```
 
 Group airside system ss-a reports by system name, pull total cooling & heating energy from each:
->ssa_df = mysim.sim.ssa().groupby('Object').sum()
+
+```python
+ssa_df = mysim.sim.ssa().groupby('Object').sum()
+```
 
 Create barplot of cooling/heating for each system:
->eq.plot.tablebar(ssa_df)
+
+```python
+eq.plot.tablebar(ssa_df)
+```
 
 ### 
 
